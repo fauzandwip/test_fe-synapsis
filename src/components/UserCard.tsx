@@ -9,17 +9,18 @@ import IconTrash from './icons/IconTrash';
 type Props = {
 	user: User;
 	onClickEditButton: () => void;
+	onClickDeleteButton: () => void;
 };
-const UserCard = ({ user, onClickEditButton }: Props) => {
-	const [showAction, setShowAction] = useState(false);
+const UserCard = ({ user, onClickEditButton, onClickDeleteButton }: Props) => {
+	// const [showAction, setShowAction] = useState(false);
 
 	return (
 		<div
-			onMouseEnter={() => setShowAction(true)}
-			onMouseLeave={() => setShowAction(false)}
+			// onMouseEnter={() => setShowAction(true)}
+			// onMouseLeave={() => setShowAction(false)}
 			className=" border-2 border-black shadow-neu rounded-lg hover:bg-lime-400 flex"
 		>
-			<div className="w-full py-4 px-4 border-r-2 border-black rounded-lg">
+			<div className="w-full py-4 px-4 border-r-2 border-black rounded-2xl ">
 				<div className="flex justify-between items-start">
 					<div className="flex justify-start">
 						<h1 className=" text-xl font-bold mb-1">{user.name}</h1>
@@ -39,16 +40,24 @@ const UserCard = ({ user, onClickEditButton }: Props) => {
 				</div>
 				<p className=" w-full line-clamp-2 text-sm">{user.email}</p>
 			</div>
+
+			{/* actions */}
 			<div
 				className={` flex gap-2 p-4 justify-center items-center duration-300 transition-transform`}
 			>
+				{/* edit button */}
 				<button
 					onClick={onClickEditButton}
 					className="p-2 rounded-lg bg-blue-600 shadow-neu-light"
 				>
 					<IconEdit className=" text-white" width={'1.1em'} height={'1.1em'} />
 				</button>
-				<button className="p-2 rounded-lg bg-red-600 shadow-neu-light">
+
+				{/* cancel button */}
+				<button
+					onClick={onClickDeleteButton}
+					className="p-2 rounded-lg bg-red-600 shadow-neu-light"
+				>
 					<IconTrash className=" text-white" width={'1.1em'} height={'1.1em'} />
 				</button>
 			</div>

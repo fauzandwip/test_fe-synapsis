@@ -21,13 +21,10 @@ const UsersPage = () => {
 
 	const fetchUsers = async () => {
 		try {
-			const headers = new Headers();
-			headers.append(
-				'Authorization',
-				`Bearer ${process.env.NEXT_PUBLIC_GOREST_ACCESS_TOKEN}`
-			);
 			const response = await fetch(`${GOREST_URL}/users`, {
-				headers,
+				headers: {
+					Authorization: `Bearer ${process.env.NEXT_PUBLIC_GOREST_ACCESS_TOKEN}`,
+				},
 			});
 			const data = await response.json();
 			setUsers(data);
@@ -40,6 +37,11 @@ const UsersPage = () => {
 		fetchUsers();
 	}, []);
 
+	const onChangeCurrentUser = (field: string, value: string) => {
+		setCurrentUser((prev) => ({ ...prev, [field]: value }));
+	};
+
+	// toggle form
 	const toggleShowAddForm = () => {
 		setShowAddForm((prev) => (prev ? false : true));
 	};
@@ -47,31 +49,39 @@ const UsersPage = () => {
 		setshowEditForm((prev) => (prev ? false : true));
 	};
 
+	// actions button
 	const handleOnClickEditButton = (user: User) => {
 		setCurrentUser(user);
 		toggleShowEditForm();
 	};
-
-	const onChangeCurrentUser = (field: string, value: string) => {
-		setCurrentUser((prev) => ({ ...prev, [field]: value }));
+	const handleOnClickDeleteButton = async (userId: number) => {
+		try {
+			await fetch(GOREST_URL + '/users/' + userId, {
+				method: 'DELETE',
+				headers: {
+					Authorization: `Bearer ${process.env.NEXT_PUBLIC_GOREST_ACCESS_TOKEN}`,
+				},
+			});
+			fetchUsers();
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
+	// submit form
 	const handleOnSubmitAdd = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
 			const formData = new FormData(e.currentTarget);
-			const headers = new Headers();
-			headers.append(
-				'Authorization',
-				`Bearer ${process.env.NEXT_PUBLIC_GOREST_ACCESS_TOKEN}`
-			);
-			const response = await fetch(GOREST_URL + '/users', {
+			await fetch(GOREST_URL + '/users', {
 				method: 'POST',
 				body: formData,
-				headers,
+				headers: {
+					Authorization: `Bearer ${process.env.NEXT_PUBLIC_GOREST_ACCESS_TOKEN}`,
+				},
 			});
-			// console.log(await response.json(), 'ADD');
 			toggleShowAddForm();
+			fetchUsers();
 		} catch (error) {
 			console.log(error);
 		}
@@ -79,22 +89,15 @@ const UsersPage = () => {
 
 	const handleOnSubmitEdit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		console.log('trigerr submit EDIT');
-
 		try {
 			const formData = new FormData(e.currentTarget);
-			const headers = new Headers();
-			headers.append(
-				'Authorization',
-				`Bearer ${process.env.NEXT_PUBLIC_GOREST_ACCESS_TOKEN}`
-			);
-			// console.log(formData.get('name'));
-			const response = await fetch(GOREST_URL + '/users/' + currentUser.id, {
+			await fetch(GOREST_URL + '/users/' + currentUser.id, {
 				method: 'PUT',
 				body: formData,
-				headers,
+				headers: {
+					Authorization: `Bearer ${process.env.NEXT_PUBLIC_GOREST_ACCESS_TOKEN}`,
+				},
 			});
-			// console.log(await response.json(), 'EDIT');
 			toggleShowEditForm();
 			fetchUsers();
 		} catch (error) {
@@ -119,6 +122,7 @@ const UsersPage = () => {
 							key={user.id}
 							user={user}
 							onClickEditButton={() => handleOnClickEditButton(user)}
+							onClickDeleteButton={() => handleOnClickDeleteButton(user.id)}
 						/>
 					);
 				})}
