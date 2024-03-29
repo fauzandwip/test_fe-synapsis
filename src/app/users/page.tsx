@@ -1,12 +1,13 @@
 'use client';
 
-import FormUser from '@/components/FormUser';
+import FormUser from '@/components/form/FormUser';
 import UserCard from '@/components/UserCard';
 import IconPlus from '@/components/icons/IconPlus';
 import { GOREST_URL } from '@/config/config';
 import { User } from '@/types/user';
 import React, { FormEvent, useEffect, useState } from 'react';
 import { setTimeout } from 'timers';
+import Pagination from '@/components/Pagination';
 
 const UsersPage = () => {
 	const [users, setUsers] = useState<User[]>([]);
@@ -20,14 +21,27 @@ const UsersPage = () => {
 	const [search, setSearch] = useState('');
 	const [showAddForm, setShowAddForm] = useState(false);
 	const [showEditForm, setshowEditForm] = useState(false);
+	const [page, setPage] = useState<number>(1);
+	const [totalPage, setTotalPage] = useState(1);
+	const [per_page, setPer_page] = useState(5);
 
 	const fetchUsers = async () => {
 		try {
-			const response = await fetch(`${GOREST_URL}/users?name=${search}`, {
-				headers: {
-					Authorization: `Bearer ${process.env.NEXT_PUBLIC_GOREST_ACCESS_TOKEN}`,
-				},
-			});
+			const response = await fetch(
+				`${GOREST_URL}/users?name=${search}&page=${page}&per_page=${per_page}`,
+				{
+					headers: {
+						Authorization: `Bearer ${process.env.NEXT_PUBLIC_GOREST_ACCESS_TOKEN}`,
+					},
+				}
+			);
+			const totalUsers = await response.headers.get('X-Pagination-Total');
+			if (totalUsers) {
+				const totalPages = Math.ceil(+totalUsers / per_page);
+				setPage((prev) => (prev > totalPages ? 1 : prev));
+				setTotalPage(totalPages);
+			}
+
 			const data = await response.json();
 			setUsers(data);
 		} catch (error) {
@@ -37,7 +51,7 @@ const UsersPage = () => {
 
 	useEffect(() => {
 		fetchUsers();
-	}, [search]);
+	}, [search, page]);
 
 	const onChangeCurrentUser = (field: string, value: string) => {
 		setCurrentUser((prev) => ({ ...prev, [field]: value }));
@@ -108,8 +122,8 @@ const UsersPage = () => {
 	};
 
 	return (
-		<div className=" w-full min-h-screen bg-gray-300 p-8 relative">
-			<div className="p-4 flex justify-end items-center gap-2">
+		<div className=" w-full min-h-screen bg-gray-300 p-8 relative flex flex-col">
+			<div className="p-4 flex justify-end items-center gap-2 ">
 				<div className="w-full p-2">
 					<input
 						onChange={async (e) => {
@@ -131,7 +145,7 @@ const UsersPage = () => {
 					<IconPlus width={'2em'} height={'2em'} className="text-slate-100" />
 				</button>
 			</div>
-			<div className=" flex flex-col gap-6">
+			<div className=" flex flex-col gap-6 flex-grow py-4">
 				{users.map((user: User) => {
 					return (
 						<UserCard
@@ -143,6 +157,8 @@ const UsersPage = () => {
 					);
 				})}
 			</div>
+			{/* pagination */}
+			<Pagination page={page} totalPage={totalPage} setPage={setPage} />
 
 			{/* add form */}
 			{showAddForm && (

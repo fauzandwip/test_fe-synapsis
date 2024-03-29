@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent } from 'react';
 import Input from './Input';
 import Select from './Select';
 import { User } from '@/types/user';
@@ -73,20 +73,20 @@ const FormUser = ({
 				/>
 				<div className="flex justify-end gap-4 px-2">
 					<input
+						type="submit"
+						value={title}
+						className="bg-blue-800 text-slate-50 py-2 px-8 rounded-lg shadow-neu mt-6 w-full font-semibold hover:bg-blue-600 active:bg-blue-800 active:translate-x-[2.5px] active:translate-y-[2.5px] active:shadow transition-transform"
+					/>
+					<button
 						onClick={(e) => {
 							e.preventDefault();
 							e.stopPropagation();
 							toggleShowForm();
 						}}
-						type="submit"
-						value={'Cancel'}
 						className="bg-red-600 text-slate-50 py-2 px-8 rounded-lg shadow-neu mt-6 w-full font-semibold hover:bg-red-500 active:bg-red-600 active:scale-95 transition-transform"
-					/>
-					<input
-						type="submit"
-						value={title}
-						className="bg-blue-800 text-slate-50 py-2 px-8 rounded-lg shadow-neu mt-6 w-full font-semibold hover:bg-blue-600 active:bg-blue-800 active:translate-x-[2.5px] active:translate-y-[2.5px] active:shadow transition-transform"
-					/>
+					>
+						Cancel
+					</button>
 				</div>
 			</form>
 		</div>
