@@ -12,7 +12,9 @@ const PostsPage = () => {
 	useEffect(() => {
 		const fetchPosts = async () => {
 			try {
-				const response = await fetch(`${GOREST_URL}/posts`);
+				const response = await fetch(`${GOREST_URL}/posts`, {
+					method: 'GET',
+				});
 				const data = await response.json();
 				setPosts(data);
 			} catch (error) {
@@ -23,14 +25,17 @@ const PostsPage = () => {
 	}, []);
 
 	return (
-		<div className=" w-full min-h-screen bg-gray-300 flex flex-col gap-8 p-8">
-			{posts.map((post: Post) => {
-				return (
-					<Link key={post.id} href={`/posts/${post.id}`}>
-						<PostCard post={post} />
-					</Link>
-				);
-			})}
+		<div className="w-full pt-24 min-h-screen flex flex-col p-8 gap-6">
+			<h1 className=" text-2xl font-bold">Posts</h1>
+			<div className=" w-full grid grid-cols-1 gap-6">
+				{posts.map((post: Post) => {
+					return (
+						<Link key={post.id} href={`/posts/${post.id}`}>
+							<PostCard post={post} />
+						</Link>
+					);
+				})}
+			</div>
 		</div>
 	);
 };

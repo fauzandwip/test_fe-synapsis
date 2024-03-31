@@ -8,6 +8,7 @@ import { User } from '@/types/user';
 import React, { FormEvent, useEffect, useState } from 'react';
 import { setTimeout } from 'timers';
 import Pagination from '@/components/Pagination';
+import SearchBar from '@/components/SearchBar';
 
 const UsersPage = () => {
 	const [users, setUsers] = useState<User[]>([]);
@@ -23,7 +24,7 @@ const UsersPage = () => {
 	const [showEditForm, setshowEditForm] = useState(false);
 	const [page, setPage] = useState<number>(1);
 	const [totalPage, setTotalPage] = useState(1);
-	const [per_page, setPer_page] = useState(5);
+	const [per_page, setPer_page] = useState(20);
 
 	const fetchUsers = async () => {
 		try {
@@ -35,7 +36,7 @@ const UsersPage = () => {
 					},
 				}
 			);
-			const totalUsers = await response.headers.get('X-Pagination-Total');
+			const totalUsers = response.headers.get('X-Pagination-Total');
 			if (totalUsers) {
 				const totalPages = Math.ceil(+totalUsers / per_page);
 				setPage((prev) => (prev > totalPages ? 1 : prev));
@@ -122,22 +123,15 @@ const UsersPage = () => {
 	};
 
 	return (
-		<div className=" w-full min-h-screen bg-gray-300 p-8 relative flex flex-col">
-			<div className="p-4 flex justify-end items-center gap-2 ">
-				<div className="w-full p-2">
-					<input
-						onChange={async (e) => {
-							setTimeout(() => {
-								setSearch(e.target.value);
-							}, 600);
-						}}
-						type="text"
-						name="search"
-						id="search"
-						className="w-full px-4 py-2 rounded-lg border-2 border-black shadow-neu outline-none focus:bg-lime-500 bg-white focus:placeholder-slate-200 placeholder-slate-400"
-						placeholder="search by name"
-					/>
-				</div>
+		<div
+			className={`w-full pt-24 bg-gray-300 p-8 flex flex-col items-center ${
+				showAddForm || showEditForm ? ' h-screen overflow-hidden' : ''
+			}`}
+		>
+			<h1 className=" text-2xl font-bold text-left w-full">User</h1>
+			<div className="p-4 flex justify-end items-center gap-2 w-full md:w-3/4">
+				<SearchBar setSearch={setSearch} />
+				{/* add button */}
 				<button
 					onClick={toggleShowAddForm}
 					className="p-2 h-max bg-blue-800 rounded-full hover:bg-blue-900 active:bg-blue-950 active:scale-95 transition-transform"
@@ -145,7 +139,8 @@ const UsersPage = () => {
 					<IconPlus width={'2em'} height={'2em'} className="text-slate-100" />
 				</button>
 			</div>
-			<div className=" flex flex-col gap-6 flex-grow py-4">
+			{/* user lists */}
+			<div className="w-full grid grid-cols-1 grid-rows-5 md:grid-cols-2 gap-6 grow py-4 ">
 				{users.map((user: User) => {
 					return (
 						<UserCard
