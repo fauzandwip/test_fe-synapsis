@@ -6,7 +6,6 @@ import IconPlus from '@/components/icons/IconPlus';
 import { GOREST_URL } from '@/config/config';
 import { User } from '@/types/user';
 import React, { FormEvent, useEffect, useState } from 'react';
-import { setTimeout } from 'timers';
 import Pagination from '@/components/Pagination';
 import SearchBar from '@/components/SearchBar';
 
@@ -31,6 +30,7 @@ const UsersPage = () => {
 			const response = await fetch(
 				`${GOREST_URL}/users?name=${search}&page=${page}&per_page=${per_page}`,
 				{
+					method: 'GET',
 					headers: {
 						Authorization: `Bearer ${process.env.NEXT_PUBLIC_GOREST_ACCESS_TOKEN}`,
 					},

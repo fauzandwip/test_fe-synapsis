@@ -30,7 +30,7 @@ const Pagination = ({ page, totalPage, setPage }: Props) => {
 			{/* prev button page */}
 			<button
 				onClick={() => page > 1 && setPage((prev) => prev - 1)}
-				className={`${
+				className={`hover:bg-black hover:text-white ${
 					page > 1 ? 'opacity-1' : 'opacity-0 cursor-default'
 				} px-1 mr-6 border-2 border-black shadow-neu-light`}
 			>
@@ -42,7 +42,7 @@ const Pagination = ({ page, totalPage, setPage }: Props) => {
 				<button
 					onClick={() => setPage(1)}
 					className={`px-3 py-1 border-2 border-black shadow-neu-light ${
-						page === 1 ? 'bg-black text-white shadow-sm' : ''
+						page === 1 ? 'bg-black text-white shadow-sm' : 'hover:bg-gray-100'
 					}`}
 				>
 					<p>{1}</p>
@@ -70,7 +70,7 @@ const Pagination = ({ page, totalPage, setPage }: Props) => {
 							className={`px-3 py-1 border-2 border-black shadow-neu-light ${
 								page === handleMiddlePagination(page, totalPage, i)
 									? 'bg-black text-white shadow-sm'
-									: ''
+									: 'hover:bg-gray-100'
 							}`}
 						>
 							<p>{handleMiddlePagination(page, totalPage, i)}</p>
@@ -83,7 +83,9 @@ const Pagination = ({ page, totalPage, setPage }: Props) => {
 				<button
 					onClick={() => setPage(totalPage)}
 					className={`px-3 py-1 border-2 border-black shadow-neu-light ${
-						page === totalPage ? 'bg-black text-white  shadow-sm' : ''
+						page === totalPage
+							? 'bg-black text-white  shadow-sm'
+							: 'hover:bg-gray-100'
 					}`}
 				>
 					<p>{totalPage}</p>
@@ -92,7 +94,7 @@ const Pagination = ({ page, totalPage, setPage }: Props) => {
 			{/* next button page */}
 			<button
 				onClick={() => page < totalPage && setPage((prev) => prev + 1)}
-				className={`${
+				className={`hover:bg-black hover:text-white ${
 					page < totalPage ? 'opacity-1' : ' opacity-0 cursor-default'
 				} px-1 ml-6 border-2 border-black shadow-neu-light`}
 			>
