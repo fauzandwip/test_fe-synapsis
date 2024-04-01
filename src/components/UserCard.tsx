@@ -18,12 +18,12 @@ const UserCard = ({ user, onClickEditButton, onClickDeleteButton }: Props) => {
 		<div
 			// onMouseEnter={() => setShowAction(true)}
 			// onMouseLeave={() => setShowAction(false)}
-			className=" border-2 border-black shadow-neu rounded-lg hover:bg-lime-400 flex"
+			className=" border-2 border-black shadow-neu rounded-lg hover:bg-lime-400 flex items-center h-auto"
 		>
-			<div className="w-full py-4 px-4 border-r-2 border-black rounded-2xl ">
+			<div className="w-full py-4 px-4 border-r-2 border-black rounded-lg h-full flex flex-col justify-center">
 				<div className="flex justify-between items-start">
-					<div className="flex justify-start">
-						<h1 className=" text-xl font-bold mb-1">{user.name}</h1>
+					<div className="flex justify-start ">
+						<h1 className=" text-xl font-bold mb-1 md:text-xl ">{user.name}</h1>
 						{user.gender === 'male' ? (
 							<IconGenderMale fill="blue" width={'1.1em'} height={'1.1em'} />
 						) : (
@@ -38,12 +38,14 @@ const UserCard = ({ user, onClickEditButton, onClickDeleteButton }: Props) => {
 						<Status color="bg-red-700" status="Inactive" />
 					)}
 				</div>
-				<p className=" w-full line-clamp-2 text-sm">{user.email}</p>
+				<p className="w-full line-clamp-2 text-sm md:text-xs lg:text-sm">
+					{user.email}
+				</p>
 			</div>
 
 			{/* actions */}
 			<div
-				className={` flex gap-2 p-4 justify-center items-center duration-300 transition-transform`}
+				className={` flex md:flex-col lg:flex-row gap-2 p-4 justify-center items-center duration-300 transition-transform`}
 			>
 				{/* edit button */}
 				<button
