@@ -38,7 +38,7 @@ const UserCard = ({ user, onClickEditButton, onClickDeleteButton }: Props) => {
 						<Status color="bg-red-700" status="Inactive" />
 					)}
 				</div>
-				<p className=" w-full line-clamp-2 text-sm md:text-xs lg:text-sm">
+				<p className="w-full line-clamp-2 text-sm md:text-xs lg:text-sm">
 					{user.email}
 				</p>
 			</div>

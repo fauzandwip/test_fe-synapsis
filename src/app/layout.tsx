@@ -6,7 +6,11 @@ import Navbar from '@/components/Navbar';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-	title: 'Synapsis Test',
+	title: {
+		absolute: '',
+		default: 'Blog - Synapsis Test',
+		template: '%s | Synapsis',
+	},
 	description: 'Technicall Test Frontend Engineer Internship - Synapsis.id',
 };
 

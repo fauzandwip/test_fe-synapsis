@@ -3,6 +3,7 @@ import { GOREST_URL } from '@/config/config';
 import { Comment } from '@/types/comment';
 import { Post } from '@/types/post';
 import { User } from '@/types/user';
+import { Metadata } from 'next';
 import React from 'react';
 
 type Props = {
@@ -34,6 +35,10 @@ const fetchComments = async (postId: number) => {
 	} catch (error) {
 		console.log(error);
 	}
+};
+
+export const metadata: Metadata = {
+	title: 'Post',
 };
 
 const PostDetail = async ({ params }: Props) => {

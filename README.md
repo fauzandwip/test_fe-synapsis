@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Blogs App
+
+Welcome to Blogs App! This is Technicall Test Frontend Engineer Internship from Synapsis.id.
+
+## Table of Contents
+
+- [Blogs App](#blogs-app)
+  - [Table of Contents](#table-of-contents)
+  - [Getting Started](#getting-started)
+  - [Environment Variables](#environment-variables)
+  - [Go Rest Access Token](#go-rest-access-token)
+  - [Project Structure](#project-structure)
 
 ## Getting Started
 
-First, run the development server:
+To get started with this project, follow these steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clone this repository: `git clone https://github.com/fauzandwip/test_fe-synapsis.git`
+2. Navigate to the project directory: `cd test_fe-synapsis`
+3. Install dependencies: `npm install`
+4. Create `.env` file, then copy all the variables from `.env.example` to `.env` file and fill in all the variables
+5. Start the development server: `npm run dev`
+6. Open your browser and visit: `http://localhost:3000`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project uses environment variables for configuration. Create a `.env` file in the root directory of the project and copy all the variables from `.env.example` to `.env` file and fill in all the variables.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Go Rest Access Token
 
-## Learn More
+How to get Go Rest Access Token?
 
-To learn more about Next.js, take a look at the following resources:
+1. Visit https://gorest.co.in/consumer/login url
+2. Sign in using your Github/Google/Microsoft account
+3. After successful login, copy the access token and fill it into the `NEXT_PUBLIC_GOREST_ACCESS_TOKEN` variable in the `.env` file that you created
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **`pages/`**: Contains Next.js pages. Each file in this directory corresponds to a route in this app.
+- **`components/`**: Reusable React components used throughout the app.
+  - **`icons/`**: Contains icon-related components.
+  - **`form/`**: Contains form-related components.
+- **`types/`**: TypeScript type definitions used in this project.
+- **`public/`**: Static files like images, fonts, etc.
+- **`.env`**: Environment variables configuration file.
