@@ -43,11 +43,16 @@ const PostsPage = () => {
 	}, [page]);
 
 	if (isLoading) {
-		return <PostsLoading />;
+		return (
+			<>
+				<PostsLoading />;
+				<Pagination page={page} totalPage={totalPage} setPage={setPage} />
+			</>
+		);
 	}
 
 	return (
-		<div className="w-full pt-24 min-h-screen flex flex-col gap-8">
+		<div className="w-full pt-24 py-8 min-h-screen flex flex-col gap-8">
 			<h1 className=" text-2xl font-bold">Posts</h1>
 			<div className=" w-full grid grid-cols-1 gap-6">
 				{posts.map((post: Post) => {

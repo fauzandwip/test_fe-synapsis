@@ -129,7 +129,7 @@ const UsersPage = () => {
 
 	return (
 		<div
-			className={`w-full min-h-screen pt-24 flex flex-col items-center ${
+			className={`w-full min-h-screen pt-24 py-8 flex flex-col items-center ${
 				showAddForm || showEditForm ? ' h-screen overflow-hidden' : ''
 			}`}
 		>

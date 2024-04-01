@@ -7,10 +7,7 @@ const UsersLoading = () => {
 				.fill(0)
 				.map((_, idx) => {
 					return (
-						<div
-							key={idx}
-							className=" card-neu hover:bg-lime-400 flex items-center h-full"
-						>
+						<div key={idx} className=" card-neu flex items-center h-full">
 							<div className="w-full py-4 px-4 border-r-2 border-black rounded-lg h-20 gap-2 flex flex-col justify-center">
 								<div className="w-full flex grow h-3/4 justify-between items-start">
 									<h1 className="bg-skeleton h-full w-1/2 rounded-md"></h1>

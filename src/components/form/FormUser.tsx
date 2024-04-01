@@ -30,7 +30,7 @@ const FormUser = ({
 				onMouseDown={(e) => e.stopPropagation()}
 				onSubmit={onSubmit}
 				action=""
-				className="w-full md:w-3/4 lg:w-1/2 bg-lime-400 px-8 py-12 card-neu flex flex-col gap-3"
+				className="w-full md:w-3/4 lg:w-1/2 bg-teal-300 px-8 py-12 card-neu flex flex-col gap-3"
 			>
 				<h1 className=" text-2xl font-bold text-center mb-4">{title} User</h1>
 				<Input

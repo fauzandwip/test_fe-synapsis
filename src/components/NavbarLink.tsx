@@ -19,7 +19,7 @@ const NavbarLink = ({ url, title }: Props) => {
 				className={` py-2.5 px-4 font-bold rounded-lg ${
 					path === url
 						? 'bg-gray-200 border-2 border-black shadow-neu rounded-lg hover:bg-gray-200'
-						: 'hover:bg-lime-500'
+						: 'hover:bg-teal-500'
 				}`}
 			>
 				<h1>{title}</h1>

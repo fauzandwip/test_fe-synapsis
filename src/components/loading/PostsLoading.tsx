@@ -2,7 +2,7 @@ import React from 'react';
 
 const PostsLoading = () => {
 	return (
-		<div className="w-full pt-24 min-h-screen flex flex-col p-8 gap-8">
+		<div className="w-full pt-24 min-h-screen flex flex-col gap-8">
 			<h1 className=" text-2xl font-bold">Posts</h1>
 			<div className=" w-full grid grid-cols-1 gap-6">
 				{Array(8)

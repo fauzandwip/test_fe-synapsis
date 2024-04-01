@@ -26,7 +26,7 @@ const Pagination = ({ page, totalPage, setPage }: Props) => {
 	};
 
 	return (
-		<div className="flex gap-3 my-6 overflow-auto justify-center">
+		<div className="flex gap-3 my-6 overflow-auto justify-center bg-gray-300">
 			{/* prev button page */}
 			<button
 				onClick={() => page > 1 && setPage((prev) => prev - 1)}

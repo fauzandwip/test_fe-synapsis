@@ -12,15 +12,20 @@ type Props = {
 	onClickDeleteButton: () => void;
 };
 const UserCard = ({ user, onClickEditButton, onClickDeleteButton }: Props) => {
-	// const [showAction, setShowAction] = useState(false);
+	const [showAction, setShowAction] = useState(false);
 
 	return (
 		<div
-			// onMouseEnter={() => setShowAction(true)}
-			// onMouseLeave={() => setShowAction(false)}
-			className=" min-h-min max-h-24 card-neu hover:bg-lime-400 flex items-center"
+			onMouseEnter={() => setShowAction(true)}
+			onMouseLeave={() => setShowAction(false)}
+			className="min-h-min max-h-28 card-neu hover:bg-teal-300 flex items-center transition-all"
 		>
-			<div className="w-full py-4 px-4 border-r-2 border-black rounded-lg h-full flex flex-col justify-center">
+			{/*  */}
+			<div
+				className={`w-full py-4 px-4 border-r-2 border-black rounded-lg h-full flex flex-col justify-center transition-all ${
+					showAction ? '' : 'flex-shrink-0'
+				}`}
+			>
 				<div className="flex justify-between items-start">
 					<div className="flex justify-start ">
 						<h1 className=" text-xl font-bold mb-1 md:text-xl ">{user.name}</h1>
@@ -45,7 +50,9 @@ const UserCard = ({ user, onClickEditButton, onClickDeleteButton }: Props) => {
 
 			{/* actions */}
 			<div
-				className={` flex md:flex-col lg:flex-row gap-2 p-4 justify-center items-center duration-300 transition-transform`}
+				className={`w-max flex md:flex-col lg:flex-row gap-2 p-4 justify-center items-center duration-300 transition-all ${
+					showAction ? '' : 'translate-x-20'
+				}`}
 			>
 				{/* edit button */}
 				<button
