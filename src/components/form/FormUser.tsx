@@ -24,7 +24,7 @@ const FormUser = ({
 				e.stopPropagation();
 				toggleShowForm();
 			}}
-			className="w-full min-h-screen bg-gray-500/50 absolute top-0 left-0 flex justify-center items-center p-8 backdrop-blur-sm"
+			className="w-full min-h-screen bg-gray-500/50 absolute top-0 left-0 flex justify-center items-center p-8 backdrop-blur-sm z-30"
 		>
 			<form
 				onMouseDown={(e) => e.stopPropagation()}
