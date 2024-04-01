@@ -47,9 +47,9 @@ const PostDetail = async ({ params }: Props) => {
 	const comments: Comment[] = await fetchComments(post.id);
 
 	return (
-		<div className="w-full min-h-screen pt-24 p-8 flex flex-col gap-4">
+		<div className="w-full min-h-screen pt-24 py-10 flex flex-col gap-4">
 			{/* Detail Post */}
-			<div className="border-2 border-black p-4 shadow-neu rounded-lg bg-lime-200">
+			<div className="p-4 card-neu bg-teal-200">
 				<h1 className=" text-2xl font-bold mb-4">{post.title}</h1>
 				<p>{post.body}</p>
 				<p className="text-right mt-6 font-medium italic">By {author.name}</p>

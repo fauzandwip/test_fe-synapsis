@@ -23,7 +23,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={inter.className + ' bg-gray-300'}>
 				<Navbar />
-				{children}
+				<div className="px-8 md:px-10 lg:px-24 min-h-screen">{children}</div>
 			</body>
 		</html>
 	);

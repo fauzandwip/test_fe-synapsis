@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-skeleton {
+	@apply bg-gradient-to-tr from-gray-400 via-gray-500 to-gray-400;
+}
+
+.card {
+	@apply border-2 border-black rounded-lg;
+}
+
+.card-neu {
+	@apply card shadow-neu;
+}
+
+.card-neu-light {
+	@apply card shadow-neu-light;
+}
+
+.box-neu-light {
+	@apply border-2 border-black shadow-neu-light;
+}
+
+.btn-press {
+	@apply active:translate-x-[2.5px] active:translate-y-[2.5px] active:shadow transition-transform active:border;
+}

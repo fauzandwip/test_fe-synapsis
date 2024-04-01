@@ -26,13 +26,13 @@ const Pagination = ({ page, totalPage, setPage }: Props) => {
 	};
 
 	return (
-		<div className="flex gap-3 my-6 overflow-auto justify-center">
+		<div className="flex gap-3 my-6 overflow-auto justify-center bg-gray-300">
 			{/* prev button page */}
 			<button
 				onClick={() => page > 1 && setPage((prev) => prev - 1)}
 				className={`hover:bg-black hover:text-white ${
 					page > 1 ? 'opacity-1' : 'opacity-0 cursor-default'
-				} px-1 mr-6 border-2 border-black shadow-neu-light`}
+				} px-1 mr-6 box-neu-light`}
 			>
 				<IconChevronLeft width={'1.8em'} height={'1.8em'} />
 			</button>
@@ -41,7 +41,7 @@ const Pagination = ({ page, totalPage, setPage }: Props) => {
 			{page > 2 && (
 				<button
 					onClick={() => setPage(1)}
-					className={`px-3 py-1 border-2 border-black shadow-neu-light ${
+					className={`px-3 py-1 box-neu-light ${
 						page === 1 ? 'bg-black text-white shadow-sm' : 'hover:bg-gray-100'
 					}`}
 				>
@@ -67,7 +67,7 @@ const Pagination = ({ page, totalPage, setPage }: Props) => {
 							onClick={() =>
 								setPage((prev) => handleMiddlePagination(prev, totalPage, i))
 							}
-							className={`px-3 py-1 border-2 border-black shadow-neu-light ${
+							className={`px-3 py-1 box-neu-light ${
 								page === handleMiddlePagination(page, totalPage, i)
 									? 'bg-black text-white shadow-sm'
 									: 'hover:bg-gray-100'
@@ -82,7 +82,7 @@ const Pagination = ({ page, totalPage, setPage }: Props) => {
 			{page < totalPage - 1 && (totalPage > 5 ? true : page > 2) && (
 				<button
 					onClick={() => setPage(totalPage)}
-					className={`px-3 py-1 border-2 border-black shadow-neu-light ${
+					className={`px-3 py-1 box-neu-light ${
 						page === totalPage
 							? 'bg-black text-white  shadow-sm'
 							: 'hover:bg-gray-100'
@@ -96,7 +96,7 @@ const Pagination = ({ page, totalPage, setPage }: Props) => {
 				onClick={() => page < totalPage && setPage((prev) => prev + 1)}
 				className={`hover:bg-black hover:text-white ${
 					page < totalPage ? 'opacity-1' : ' opacity-0 cursor-default'
-				} px-1 ml-6 border-2 border-black shadow-neu-light`}
+				} px-1 ml-6 box-neu-light`}
 			>
 				<IconChevronRight width={'1.8em'} height={'1.8em'} />
 			</button>
