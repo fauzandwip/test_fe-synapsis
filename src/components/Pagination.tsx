@@ -98,10 +98,7 @@ const Pagination = ({ page, totalPage, setPage }: Props) => {
 					page < totalPage ? 'opacity-1' : ' opacity-0 cursor-default'
 				} px-1 ml-6 box-neu-light`}
 			>
-				<IconChevronRight
-					width={'1.8emtext-sm md:text-base px-2 md:px-3 py-1'}
-					height={'1.8em'}
-				/>
+				<IconChevronRight width={'1.8em'} height={'1.8em'} />
 			</button>
 		</div>
 	);
