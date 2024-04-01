@@ -18,7 +18,7 @@ const UserCard = ({ user, onClickEditButton, onClickDeleteButton }: Props) => {
 		<div
 			// onMouseEnter={() => setShowAction(true)}
 			// onMouseLeave={() => setShowAction(false)}
-			className=" border-2 border-black shadow-neu rounded-lg hover:bg-lime-400 flex items-center h-auto"
+			className=" min-h-min max-h-24 card-neu hover:bg-lime-400 flex items-center"
 		>
 			<div className="w-full py-4 px-4 border-r-2 border-black rounded-lg h-full flex flex-col justify-center">
 				<div className="flex justify-between items-start">

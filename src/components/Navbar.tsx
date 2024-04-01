@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Navbar = () => {
 	return (
-		<div className="w-full fixed flex justify-between items-center px-8 bg-lime-400 border-b border-b-black shadow-neu py-2">
+		<div className="w-full left-0 top-0 px-8 md:px-16 lg:px-24 fixed flex justify-between items-center bg-lime-400 border-b border-b-black shadow-neu py-2">
 			<Link href={'/'} className=" cursor-pointer">
 				<h1 className=" text-xl font-bold">Test Synapsis</h1>
 			</Link>

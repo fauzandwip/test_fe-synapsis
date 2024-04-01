@@ -15,7 +15,7 @@ const Input: React.FC<Props> = ({ labelText, id, ...props }: Props) => {
 				id={id}
 				name={id}
 				{...props}
-				className=" border-2 border-black shadow-neu rounded-md w-full py-2 px-4 focus:bg-gray-300 focus:shadow-neu outline-none"
+				className=" card-neu w-full py-2 px-4 focus:bg-gray-300 focus:shadow-neu outline-none"
 			/>
 		</div>
 	);

@@ -6,15 +6,18 @@ import { GOREST_URL } from '@/config/config';
 import { Post } from '@/types/post';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import PostsLoading from '@/components/loading/PostsLoading';
 
 const PostsPage = () => {
 	const [posts, setPosts] = useState<Post[]>([]);
 	const [page, setPage] = useState<number>(1);
 	const [totalPage, setTotalPage] = useState(1);
 	const [per_page, setPer_page] = useState(20);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const fetchPosts = async () => {
 		try {
+			setIsLoading(true);
 			const response = await fetch(
 				`${GOREST_URL}/posts?page=${page}&per_page=${per_page}`,
 				{
@@ -28,7 +31,9 @@ const PostsPage = () => {
 				setTotalPage(totalPages);
 			}
 			setPosts(data);
+			setIsLoading(false);
 		} catch (error) {
+			setIsLoading(false);
 			console.log(error);
 		}
 	};
@@ -37,8 +42,12 @@ const PostsPage = () => {
 		fetchPosts();
 	}, [page]);
 
+	if (isLoading) {
+		return <PostsLoading />;
+	}
+
 	return (
-		<div className="w-full pt-24 min-h-screen flex flex-col p-8 gap-6">
+		<div className="w-full pt-24 min-h-screen flex flex-col gap-8">
 			<h1 className=" text-2xl font-bold">Posts</h1>
 			<div className=" w-full grid grid-cols-1 gap-6">
 				{posts.map((post: Post) => {

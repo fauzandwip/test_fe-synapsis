@@ -15,7 +15,7 @@ const ListComments = ({ comments }: Props) => {
 						className={`flex rounded-lg ${idx % 2 === 1 ? 'justify-end' : ''}`}
 					>
 						<div
-							className={`flex flex-col border border-gray-700 rounded-lg p-2 shadow-neu w-3/4 bg-lime-200`}
+							className={`flex flex-col border border-black rounded-lg shadow-neu-light p-2 w-3/4 bg-lime-200`}
 						>
 							<h3 className=" font-semibold">{comment.name}</h3>
 							<p className=" text-[12px] italic">{comment.email}</p>

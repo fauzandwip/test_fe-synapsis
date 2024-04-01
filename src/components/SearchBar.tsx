@@ -15,7 +15,7 @@ const SearchBar = ({ setSearch }: Props) => {
 				type="text"
 				name="search"
 				id="search"
-				className="w-full px-4 py-2 rounded-lg border-2 border-black shadow-neu outline-none focus:bg-lime-500 bg-white focus:placeholder-slate-200 placeholder-slate-400"
+				className="w-full px-4 py-2 card-neu outline-none focus:bg-lime-500 bg-white focus:placeholder-slate-200 placeholder-slate-400"
 				placeholder="search by name"
 			/>
 		</div>
