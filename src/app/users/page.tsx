@@ -8,6 +8,7 @@ import { User } from '@/types/user';
 import React, { FormEvent, useEffect, useState } from 'react';
 import Pagination from '@/components/Pagination';
 import SearchBar from '@/components/SearchBar';
+import UsersLoading from '@/components/loading/UsersLoading';
 
 const UsersPage = () => {
 	const [users, setUsers] = useState<User[]>([]);
@@ -24,9 +25,11 @@ const UsersPage = () => {
 	const [page, setPage] = useState<number>(1);
 	const [totalPage, setTotalPage] = useState(1);
 	const [per_page, setPer_page] = useState(20);
+	const [isLoading, setIsLoading] = useState(true);
 
 	const fetchUsers = async () => {
 		try {
+			setIsLoading(true);
 			const response = await fetch(
 				`${GOREST_URL}/users?name=${search}&page=${page}&per_page=${per_page}`,
 				{
@@ -45,7 +48,9 @@ const UsersPage = () => {
 
 			const data = await response.json();
 			setUsers(data);
+			setIsLoading(false);
 		} catch (error) {
+			setIsLoading(false);
 			console.log(error);
 		}
 	};
@@ -124,7 +129,7 @@ const UsersPage = () => {
 
 	return (
 		<div
-			className={`w-full pt-24 bg-gray-300 p-8 flex flex-col items-center ${
+			className={`w-full min-h-screen pt-24 py-8 flex flex-col items-center ${
 				showAddForm || showEditForm ? ' h-screen overflow-hidden' : ''
 			}`}
 		>
@@ -140,20 +145,32 @@ const UsersPage = () => {
 				</button>
 			</div>
 			{/* user lists */}
-			<div className="w-full grid grid-cols-1 grid-rows-5 md:grid-cols-2 gap-6 grow py-4 ">
-				{users.map((user: User) => {
-					return (
-						<UserCard
-							key={user.id}
-							user={user}
-							onClickEditButton={() => handleOnClickEditButton(user)}
-							onClickDeleteButton={() => handleOnClickDeleteButton(user.id)}
-						/>
-					);
-				})}
-			</div>
-			{/* pagination */}
-			<Pagination page={page} totalPage={totalPage} setPage={setPage} />
+			{isLoading ? (
+				<>
+					<UsersLoading />
+					<Pagination page={page} totalPage={totalPage} setPage={setPage} />
+				</>
+			) : (
+				<>
+					<div
+						className={`w-full grid grid-cols-1 md:grid-cols-2 grow gap-6 py-4 `}
+					>
+						{users.map((user: User) => {
+							return (
+								<UserCard
+									key={user.id}
+									user={user}
+									onClickEditButton={() => handleOnClickEditButton(user)}
+									onClickDeleteButton={() => handleOnClickDeleteButton(user.id)}
+								/>
+							);
+						})}
+					</div>
+
+					{/* pagination */}
+					<Pagination page={page} totalPage={totalPage} setPage={setPage} />
+				</>
+			)}
 
 			{/* add form */}
 			{showAddForm && (

@@ -30,7 +30,7 @@ const FormUser = ({
 				onMouseDown={(e) => e.stopPropagation()}
 				onSubmit={onSubmit}
 				action=""
-				className="w-full bg-lime-400 px-8 py-12 rounded-lg border-2 border-black shadow-neu flex flex-col gap-3"
+				className="w-full md:w-3/4 lg:w-1/2 bg-teal-300 px-8 py-12 card-neu flex flex-col gap-3"
 			>
 				<h1 className=" text-2xl font-bold text-center mb-4">{title} User</h1>
 				<Input
@@ -75,7 +75,7 @@ const FormUser = ({
 					<input
 						type="submit"
 						value={title}
-						className="bg-blue-800 text-slate-50 py-2 px-8 rounded-lg shadow-neu mt-6 w-full font-semibold hover:bg-blue-600 active:bg-blue-800 active:translate-x-[2.5px] active:translate-y-[2.5px] active:shadow transition-transform"
+						className="bg-blue-800 text-slate-50 py-2 px-8 rounded-lg shadow-neu mt-6 w-full font-semibold hover:bg-blue-600 active:bg-blue-800 btn-press"
 					/>
 					<button
 						onClick={(e) => {
@@ -83,7 +83,7 @@ const FormUser = ({
 							e.stopPropagation();
 							toggleShowForm();
 						}}
-						className="bg-red-600 text-slate-50 py-2 px-8 rounded-lg shadow-neu mt-6 w-full font-semibold hover:bg-red-500 active:bg-red-600 active:scale-95 transition-transform"
+						className="bg-red-600 text-slate-50 py-2 px-8 rounded-lg shadow-neu mt-6 w-full font-semibold hover:bg-red-500 active:bg-red-600 btn-press"
 					>
 						Cancel
 					</button>
