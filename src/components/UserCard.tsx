@@ -18,7 +18,7 @@ const UserCard = ({ user, onClickEditButton, onClickDeleteButton }: Props) => {
 		<div
 			onMouseEnter={() => setShowAction(true)}
 			onMouseLeave={() => setShowAction(false)}
-			className="min-h-min max-h-28 card-neu hover:bg-teal-300 flex items-center transition-all"
+			className="min-h-min max-h-28 card-neu hover:bg-teal-300 w-full overflow-x-hidden flex items-center transition-all"
 		>
 			{/*  */}
 			<div
@@ -28,7 +28,9 @@ const UserCard = ({ user, onClickEditButton, onClickDeleteButton }: Props) => {
 			>
 				<div className="flex justify-between items-start">
 					<div className="flex justify-start ">
-						<h1 className=" text-xl font-bold mb-1 md:text-xl ">{user.name}</h1>
+						<h1 className=" text-base font-bold mb-1 md:text-xl ">
+							{user.name}
+						</h1>
 						{user.gender === 'male' ? (
 							<IconGenderMale fill="blue" width={'1.1em'} height={'1.1em'} />
 						) : (
@@ -43,15 +45,15 @@ const UserCard = ({ user, onClickEditButton, onClickDeleteButton }: Props) => {
 						<Status color="bg-red-700" status="Inactive" />
 					)}
 				</div>
-				<p className="w-full line-clamp-2 text-sm md:text-xs lg:text-sm">
+				<p className="w-full line-clamp-2 text-xs md:text-xs lg:text-sm text-ellipsis">
 					{user.email}
 				</p>
 			</div>
 
 			{/* actions */}
 			<div
-				className={`w-max flex md:flex-col lg:flex-row gap-2 p-4 justify-center items-center duration-300 transition-all ${
-					showAction ? '' : 'translate-x-20'
+				className={`w-max flex flex-col lg:flex-row gap-2 p-4 justify-center items-center duration-300 transition-all ${
+					showAction ? '' : 'translate-x-4'
 				}`}
 			>
 				{/* edit button */}

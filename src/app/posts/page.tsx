@@ -45,7 +45,7 @@ const PostsPage = () => {
 	if (isLoading) {
 		return (
 			<>
-				<PostsLoading />;
+				<PostsLoading />
 				<Pagination page={page} totalPage={totalPage} setPage={setPage} />
 			</>
 		);
